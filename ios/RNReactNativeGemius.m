@@ -37,6 +37,14 @@ RCT_EXPORT_METHOD(sendPageViewedEvent)
     [event sendEvent];
 }
 
+RCT_EXPORT_METHOD(sendPageViewedEventWithExtraParam:(NSString *)extraParamKey  extraParamValue:(NSString *)extraParamValue)
+{
+    GEMAudienceEvent *event = [[GEMAudienceEvent alloc] init];
+    [event setEventType:GEM_EVENT_FULL_PAGEVIEW];
+    [event addExtraParameter:extraParamKey value:extraParamValue];
+    [event sendEvent];
+}
+
 RCT_EXPORT_METHOD(getWebViewUserAgent:(RCTResponseSenderBlock)callback)
 {
   NSString *userAgent = [[GEMConfig sharedInstance] getUA4WebView];
