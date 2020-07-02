@@ -76,4 +76,16 @@ public class RNReactNativeGemiusModule extends ReactContextBaseJavaModule {
         event.sendEvent();
         Log.d("RNGemius", "Successfully send Gemius event");
     }
+
+    @ReactMethod
+    public void sendPageViewedEventWithExtraParam(String extraParamKey, String extraParamValue) {
+        Log.d("RNGemius", "Preparing Gemius event with script identifier: " + this.scriptIdentifierAndroid);
+        AudienceEvent event = new AudienceEvent(reactContext);
+        event.setScriptIdentifier(this.scriptIdentifierAndroid);
+        event.setEventType(EventType.FULL_PAGEVIEW);
+        Log.d("RNGemius", "Extra param " + extraParamKey + " " + extraParamValue);
+        event.addExtraParameter(extraParamKey, extraParamValue);
+        event.sendEvent();
+        Log.d("RNGemius", "Successfully send Gemius event");
+    }
 }
